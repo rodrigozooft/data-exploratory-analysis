@@ -45,3 +45,8 @@ library(ggplot2)
 # Create line plot
 ggplot(by_year, aes(x = year, y = percent_yes)) +
   geom_line()
+
+# Change to scatter plot and add smoothing curve
+ggplot(by_year, aes(year, percent_yes)) +
+  geom_point() +
+  geom_smooth()
