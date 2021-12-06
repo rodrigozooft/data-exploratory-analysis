@@ -50,3 +50,9 @@ ggplot(by_year, aes(x = year, y = percent_yes)) +
 ggplot(by_year, aes(year, percent_yes)) +
   geom_point() +
   geom_smooth()
+
+# Group by year and country: by_year_country
+by_year_country <- votes_processed %>%
+  group_by(year, country) %>%
+  summarize(total = n(),
+            percent_yes = mean(vote == 1))
