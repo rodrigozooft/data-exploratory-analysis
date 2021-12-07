@@ -306,3 +306,11 @@ country_topic_coefficients
 country_topic_filtered <- country_topic_coefficients %>% filter(term == "year") %>%
     mutate(p.adjusted = p.adjust(p.value)) %>%
     filter(p.adjusted < 0.05)
+
+# Create vanuatu_by_country_year_topic
+vanuatu_by_country_year_topic <- by_country_year_topic %>% filter(country == "Vanuatu")
+
+# Plot of percentage "yes" over time, faceted by topic
+ggplot(vanuatu_by_country_year_topic, aes(x = year, y = percent_yes)) +
+  geom_line() + 
+  facet_wrap(~topic)
