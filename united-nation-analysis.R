@@ -121,3 +121,9 @@ filtered_countries <- by_year_country %>%
 ggplot(filtered_countries, aes(year, percent_yes)) +
   geom_line() +
   facet_wrap(~ country, scales = "free_y")
+
+# Load the broom package
+library(broom)
+
+# Call the tidy() function on the US_fit object
+tidy(US_fit)
