@@ -144,3 +144,9 @@ UK_tidied <- tidy(UK_fit)
 
 # Combine the two tidied models
 bind_rows(US_tidied, UK_tidied)
+
+# Load the tidyr package
+library(tidyr)
+# Nest all columns besides country
+by_year_country %>%
+    nest(-country)
