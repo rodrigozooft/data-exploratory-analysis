@@ -284,4 +284,20 @@ US_by_country_year_topic <- by_country_year_topic %>% filter(country == "United 
 ggplot(US_by_country_year_topic, aes(x = year, y = percent_yes)) + 
 geom_line() + facet_wrap(~topic)
 
+# Load purrr, tidyr, and broom
+library(purrr)
+library(tidyr)
+library(broom)
 
+# Print by_country_year_topic
+by_country_year_topic
+
+# Fit model on the by_country_year_topic dataset
+country_topic_coefficients <- by_country_year_topic %>% 
+    nest(-country, -topic) %>%
+    mutate(model = map(data, ~lm(percent_yes ~ year, data = .)),
+        tidied = map(model, tidy)) %>%
+    unnest(tidied)
+
+# Print country_topic_coefficients
+country_topic_coefficients
