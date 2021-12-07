@@ -254,3 +254,14 @@ votes_joined %>% gather(topic, has_topic, me:ec)
 # Perform gather again, then filter
 
 votes_gathered <- votes_joined %>% gather(topic, has_topic, me:ec) %>% filter(has_topic == 1)
+
+# Replace the two-letter codes in topic: votes_tidied
+votes_tidied <- votes_gathered %>%
+  mutate(topic = recode(topic,
+                        me = "Palestinian conflict",
+                        nu = "Nuclear weapons and nuclear material",
+                        di = "Arms control and disarmament",
+                        hr = "Human rights",
+                        co = "Colonialism",
+                        ec = "Economic development"))
+
