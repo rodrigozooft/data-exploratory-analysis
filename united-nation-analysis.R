@@ -243,3 +243,14 @@ US_co_by_year <- votes_joined %>% filter(country == "United States", co == 1) %>
 # Graph the % of "yes" votes over time
 ggplot(US_co_by_year, aes(x = year, y = percent_yes)) +
   geom_line()
+
+# Load the tidyr package
+library(tidyr)
+
+# Gather the six me/nu/di/hr/co/ec columns
+votes_joined %>% gather(topic, has_topic, me:ec)
+
+
+# Perform gather again, then filter
+
+votes_gathered <- votes_joined %>% gather(topic, has_topic, me:ec) %>% filter(has_topic == 1)
